@@ -1,27 +1,12 @@
 # Reasoning Trace Visualization
 
-> [!WARNING]
-> **This is `EmilyReif/reasoning-trace-vis`, NOT `PAIR-code/agent-trace-vis`.**
-> They are two separate projects that share history. This repo was forked
-> from `PAIR-code/agent-trace-vis` and keeps *all* the visualizations
-> (agentic, unstructured, conversation arcs); `PAIR-code/agent-trace-vis`
-> keeps only the agentic traces view.
->
-> | | This repo | The other repo (don't touch from here) |
-> |---|---|---|
-> | GitHub | [EmilyReif/reasoning-trace-vis](https://github.com/EmilyReif/reasoning-trace-vis) | [PAIR-code/agent-trace-vis](https://github.com/PAIR-code/agent-trace-vis) |
-> | Netlify site | **`reasoning-trace-vis`** → [reasoning-trace-vis.netlify.app](https://reasoning-trace-vis.netlify.app) | `agent-trace-vis` → agent-trace-vis.netlify.app |
->
-> - **Deploy only to `reasoning-trace-vis`.** The deploy scripts in `package.json` pin
->   this site with `--site reasoning-trace-vis`, so `npm run deploy` can't
->   publish to the other site even if `.netlify/` is linked wrongly. Don't
->   remove that flag, and never run `netlify link` / `netlify deploy` by hand
->   against `agent-trace-vis`.
-> - **Push only to `origin` (EmilyReif).** If you add `PAIR-code/agent-trace-vis`
->   as `upstream`, disable pushing to it:
->   `git remote set-url --push upstream DISABLE`.
-
 [Live Demo](https://reasoning-trace-vis.netlify.app)
+
+> [!IMPORTANT]
+> This repo deploys to the Netlify site **`reasoning-trace-vis`**
+> ([reasoning-trace-vis.netlify.app](https://reasoning-trace-vis.netlify.app)).
+> It's a fork of [PAIR-code/agent-trace-vis](https://github.com/PAIR-code/agent-trace-vis),
+> which is now a separate project with its own site — don't deploy or push there from here.
 
 Visual tools for understanding AI agent reasoning traces. Built for researchers, engineers, and anyone trying to make sense of complex agentic behaviors.
 
@@ -83,7 +68,7 @@ Before each start/build, `generate-manifest.js` copies the datasets into `.data-
 
 ### 3. Building & Deploying (Netlify)
 
-Building compiles the app locally to `dist/reasoning-trace-vis/browser/`. Deploying uploads those files to the Netlify site **`reasoning-trace-vis`** at [reasoning-trace-vis.netlify.app](https://reasoning-trace-vis.netlify.app). (Not `agent-trace-vis` — that site belongs to `PAIR-code/agent-trace-vis`; see the warning at the top.)
+Building compiles the app locally to `dist/reasoning-trace-vis/browser/`. Deploying uploads those files to the Netlify site **`reasoning-trace-vis`** at [reasoning-trace-vis.netlify.app](https://reasoning-trace-vis.netlify.app). The deploy scripts pin this site with `--site reasoning-trace-vis`.
 
 By default a build includes only the public datasets (`PUBLIC_DATASETS` in `generate-manifest.js`). Pass `DATASETS` (comma-separated, or `all`) to choose others; a name that doesn't exist fails the build.
 
