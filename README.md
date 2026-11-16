@@ -1,6 +1,27 @@
 # Reasoning Trace Visualization
 
-[Live Demo](https://agent-trace-vis.netlify.app)
+> [!WARNING]
+> **This is `EmilyReif/reasoning-trace-vis`, NOT `PAIR-code/agent-trace-vis`.**
+> They are two separate projects that share history. This repo was forked
+> from `PAIR-code/agent-trace-vis` and keeps *all* the visualizations
+> (agentic, unstructured, conversation arcs); `PAIR-code/agent-trace-vis`
+> keeps only the agentic traces view.
+>
+> | | This repo | The other repo (don't touch from here) |
+> |---|---|---|
+> | GitHub | [EmilyReif/reasoning-trace-vis](https://github.com/EmilyReif/reasoning-trace-vis) | [PAIR-code/agent-trace-vis](https://github.com/PAIR-code/agent-trace-vis) |
+> | Netlify site | **`reasoning-trace-vis`** → [reasoning-trace-vis.netlify.app](https://reasoning-trace-vis.netlify.app) | `agent-trace-vis` → agent-trace-vis.netlify.app |
+>
+> - **Deploy only to `reasoning-trace-vis`.** The deploy scripts in `package.json` pin
+>   this site with `--site reasoning-trace-vis`, so `npm run deploy` can't
+>   publish to the other site even if `.netlify/` is linked wrongly. Don't
+>   remove that flag, and never run `netlify link` / `netlify deploy` by hand
+>   against `agent-trace-vis`.
+> - **Push only to `origin` (EmilyReif).** If you add `PAIR-code/agent-trace-vis`
+>   as `upstream`, disable pushing to it:
+>   `git remote set-url --push upstream DISABLE`.
+
+[Live Demo](https://reasoning-trace-vis.netlify.app)
 
 Visual tools for understanding AI agent reasoning traces. Built for researchers, engineers, and anyone trying to make sense of complex agentic behaviors.
 
@@ -11,7 +32,7 @@ As AI systems increasingly rely on multi-step reasoning and tool use, understand
 ### Agentic Traces
 A timeline-based visualization for structured agent traces (e.g., from coding agents, tool-using LLMs). Each trace is one row with horizontal lanes: the user/agent conversation, the agent's internal processes (thinking), tool calls, and a files lane showing which files were read, searched, and edited. Supports search, model highlighting, and gap compression for long traces.
 
-- **Demo**: [Demo](https://agent-trace-vis.netlify.app/#/agentic-traces)
+- **Demo**: [Demo](https://reasoning-trace-vis.netlify.app/#/agentic-traces)
 - **Route**: `/#/agentic-traces`
 - **Data format**: JSON files following the [OpenTraces](https://www.opentraces.ai) schema
 
@@ -22,21 +43,21 @@ The repo ships with sample traces in [`data/sample/traces/`](data/sample/traces/
 ### Unstructured Reasoning (Graph)
 A force-directed graph visualization for comparing multiple rollouts of unstructured chain-of-thought reasoning (e.g., RLVR-trained models solving math problems). Segments reasoning into chunks, embeds them, and visualizes structural patterns across traces.
 
-- **Demo**: [Demo](https://agent-trace-vis.netlify.app/#/unstructured-reasoning-graph)
+- **Demo**: [Demo](https://reasoning-trace-vis.netlify.app/#/unstructured-reasoning-graph)
 - **Route**: `/#/unstructured-reasoning-graph`
 - **Data format**: JSON arrays of reasoning samples with `reasoning_content` and `score` fields
 
 ### Unstructured Reasoning (Linear)
 A linear token-level visualization for comparing reasoning traces across datasets. Highlights token frequency and overlap across rollouts with multiple coloring schemes (chromogram, dataset, score-based).
 
-- **Demo**: [Demo](https://agent-trace-vis.netlify.app/#/unstructured-reasoning-linear)
+- **Demo**: [Demo](https://reasoning-trace-vis.netlify.app/#/unstructured-reasoning-linear)
 - **Route**: `/#/unstructured-reasoning-linear`
 - **Data format**: Same as the graph view
 
 ### Conversational Arcs
 A sentence-level visualization for analyzing how messages in multi-turn conversations reference and build upon previous turns.
 
-- **Demo**: [Demo](https://agent-trace-vis.netlify.app/#/conversation-arcs)
+- **Demo**: [Demo](https://reasoning-trace-vis.netlify.app/#/conversation-arcs)
 - **Route**: `/#/conversation-arcs`
 
 ## Getting Started
@@ -50,7 +71,7 @@ The app will run at `http://localhost:4200`.
 
 ### 2. Where trace data lives
 ```
-agent-trace-vis/
+reasoning-trace-vis/
 └── data/
     ├── sample/traces/      ← small sample datasets, committed
     └── local/              ← your own traces and scripts (gitignored)
@@ -62,7 +83,7 @@ Before each start/build, `generate-manifest.js` copies the datasets into `.data-
 
 ### 3. Building & Deploying (Netlify)
 
-Building compiles the app locally to `dist/reasoning-trace-vis/browser/`. Deploying uploads those files to Netlify at [agent-trace-vis.netlify.app](https://agent-trace-vis.netlify.app).
+Building compiles the app locally to `dist/reasoning-trace-vis/browser/`. Deploying uploads those files to the Netlify site **`reasoning-trace-vis`** at [reasoning-trace-vis.netlify.app](https://reasoning-trace-vis.netlify.app). (Not `agent-trace-vis` — that site belongs to `PAIR-code/agent-trace-vis`; see the warning at the top.)
 
 By default a build includes only the public datasets (`PUBLIC_DATASETS` in `generate-manifest.js`). Pass `DATASETS` (comma-separated, or `all`) to choose others; a name that doesn't exist fails the build.
 
