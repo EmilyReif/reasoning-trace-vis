@@ -5,8 +5,8 @@
 > [!IMPORTANT]
 > This repo deploys to the Netlify site **`reasoning-trace-vis`**
 > ([reasoning-trace-vis.netlify.app](https://reasoning-trace-vis.netlify.app)).
-> It's a fork of [PAIR-code/agent-trace-vis](https://github.com/PAIR-code/agent-trace-vis),
-> which is now a separate project with its own site — don't deploy or push there from here.
+> Originally forked from `PAIR-code/agent-trace-vis`, which is a separate
+> project with its own site — don't deploy or push there from here.
 
 Visual tools for understanding AI agent reasoning traces. Built for researchers, engineers, and anyone trying to make sense of complex agentic behaviors.
 
